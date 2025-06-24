@@ -25,8 +25,7 @@ main_loop:
 
     jmp main_loop
 
-; -----------------------------
-; Limpa a tela usando BIOS (modo texto)
+; Limpa a tela usando BIOS
 clear_screen:
     mov ah, 0x06    ; Scroll up
     mov al, 0       ; Scroll entire screen
@@ -36,8 +35,7 @@ clear_screen:
     int 0x10
     ret
 
-; -----------------------------
-; Printa string terminada em zero
+; Print da  string terminada em  zero
 print_string:
     lodsb
     or al, al
@@ -48,35 +46,34 @@ print_string:
 .done:
     ret
 
-; -----------------------------
-; Espera e lê um caractere do teclado
+;lê um caractere do teclado
 get_char:
     mov ah, 0x00
     int 0x16
     ret
 
-; -----------------------------
+; logo
 show_logo:
     call clear_screen
     mov si, msg_logo
     call print_string
     jmp main_loop
 
-; -----------------------------
+; saionara
 quit:
     call clear_screen
     mov si, msg_quit
     call print_string
     jmp hang
 
-; -----------------------------
+;hang
 hang:
     cli
 .hang_loop:
     hlt
     jmp .hang_loop
 
-; -----------------------------
+; msgs do menu do bxl
 msg_menu db "BxL Bootloader:", 0xA
          db "1 - Show logo", 0xA
          db "Q - Quit", 0xA
