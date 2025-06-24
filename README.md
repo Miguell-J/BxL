@@ -46,6 +46,8 @@ nasm -f bin bxl.asm -o boot.img
 qemu-system-x86_64 -drive format=raw,file=boot.img
 ```
 
+![](bxl.png)
+
 ## Contributing
 
 Contributions, feedback, and feature requests are welcome!
